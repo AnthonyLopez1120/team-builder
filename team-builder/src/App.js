@@ -2,21 +2,23 @@ import React, {useState} from 'react';
 
 import './App.css';
 import TeamForm from "./components/TeamForm"
+import Team from './components/Team'
 
 function App() {
   const [teamMembers, setTeamMembers] = useState([
-    { id: 1,
+    { 
       name: 'Anthony',
       email: 'anthony.lopez@gmail.com',
       role: 'Full-Stack Engineer'
     }
     ])
 
-    const addNewTeamMember = teamMembers => {
+    const addNewTeamMember = person => {
       const newTeamMember = {
         id: Date.now(),
-        name: teamMembers.name,
-        role: teamMembers.role
+        name: person.name,
+        email:person.email,
+        role: person.role
       }
       setTeamMembers([...teamMembers, newTeamMember])
 
@@ -26,6 +28,7 @@ function App() {
   return (
     <div className="App">
       <TeamForm addNewTeamMember = {addNewTeamMember}/>
+      <Team team = {teamMembers}/>
     </div>
   );
 }

@@ -8,11 +8,21 @@ const TeamForm = props=>{
     })
 
     const handleChange = e=>{
-        setMember({... member, [e.target.name]: e.target.value})
+        setMember({...member, [e.target.name]: e.target.value})
+    }
+
+    const submitForm = e =>{
+        e.preventDefault();
+        props.addNewTeamMember(member)
+        setMember({
+            name: "",
+            email: "",
+            role: ""
+        })
     }
 
     return (
-      <form>
+      <form onSubmit ={submitForm}>
 
           <label htmlFor = "name">Name</label>
           <input
@@ -20,6 +30,7 @@ const TeamForm = props=>{
           type = "text"
           name = "name"
           onChange = {handleChange}
+          value = {member.name}
           />
 
           <label htmlFor = "email">Email</label>
@@ -28,15 +39,18 @@ const TeamForm = props=>{
             type = "text"
             name = "email"
             onChange = {handleChange}
+            value = {member.email}
             />
 
-<label htmlFor = "role">Role</label>
+          <label htmlFor = "role">Role</label>
           <input 
             id = "role"
             type = "text"
             name = "role"
             onChange = {handleChange}
+            value = {member.value}
             />
+         <button type = 'submit'>Add</button>         
 
       </form>
     )
